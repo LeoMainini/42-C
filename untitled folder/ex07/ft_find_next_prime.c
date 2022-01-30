@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_recursive_power.c                               :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leferrei <leferrei@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 17:43:24 by leferrei          #+#    #+#             */
-/*   Updated: 2022/01/30 14:52:46 by leferrei         ###   ########.fr       */
+/*   Created: 2022/01/23 20:39:16 by leferrei          #+#    #+#             */
+/*   Updated: 2022/01/30 16:48:42 by leferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_recursive_power(int nb, int power)
-{
-	if (power < 0)
-		return (0);
-	if (power == 0)
-		return (1);
-	if (power > 0)
+int	ft_find_next_prime(int nb)
+{	
+	int	divider;
+
+	divider = 2;
+	if (nb <= 2)
+		return (2);
+	while (divider <= nb / 2 && nb < 2147483647)
 	{
-		nb = nb * ft_recursive_power(nb, power - 1);
-		return (nb);
+		if (nb % divider == 0)
+			nb = ft_find_next_prime(nb + 1);
+		divider++;
 	}
-	else
-		return (nb);
+	return (nb);
 }
+
 /*
 int main(void)
 {
-	printf("5^5 = %d\n", ft_recursive_power(5, 5));
+	printf("2357- %d\n", ft_find_next_prime(2147483647));
+	printf("> 2350- %d\n", ft_find_next_prime(2350));
+
 }
 */
